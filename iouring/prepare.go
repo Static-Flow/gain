@@ -183,8 +183,8 @@ func (entry *SubmissionQueueEntry) PrepareLinkTimeout(_ *syscall.Timespec, _ uin
 }
 
 // PrepareConnect has not been implemented yet.
-func (entry *SubmissionQueueEntry) PrepareConnect(_ int, _ uintptr, _ uint64) {
-	log.Panic(ErrNotImplemented)
+func (entry *SubmissionQueueEntry) PrepareConnect(fd int, addr uintptr, addrLen uint64) {
+	entry.prepareRW(OpConnect, fd, addr, 0, addrLen)
 }
 
 // PrepareConnectFilesUpdate has not been implemented yet.

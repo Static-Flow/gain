@@ -114,8 +114,9 @@ func (entry *SubmissionQueueEntry) PrepareSendMsg(
 }
 
 // PreparePollAdd has not been implemented yet.
-func (entry *SubmissionQueueEntry) PreparePollAdd(_ int, _ uint) {
-	log.Panic(ErrNotImplemented)
+func (entry *SubmissionQueueEntry) PreparePollAdd(fd int, flags uint) {
+	entry.prepareRW(OpPollAdd, fd, 0, 0, 0)
+	entry.OpcodeFlags = uint32(flags)
 }
 
 // PreparePollMultishot has not been implemented yet.
